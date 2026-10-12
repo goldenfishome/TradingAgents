@@ -1,6 +1,6 @@
 # TradingAgents — Multi-Agent Financial Research System
 
-> A mentor-guided software engineering project that explores how specialized AI agents can collaborate on market research, challenge one another's conclusions, and produce a risk-aware trading decision.
+> A software engineering project that explores how specialized AI agents can collaborate on market research, challenge one another's conclusions, and produce a risk-aware trading decision.
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-1C3C3C)](https://www.langchain.com/langgraph)
