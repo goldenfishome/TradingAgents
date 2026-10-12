@@ -1,6 +1,6 @@
 # TradingAgents — Multi-Agent Financial Research System
 
-> A software engineering project that explores how specialized AI agents can collaborate on market research, challenge one another's conclusions, and produce a risk-aware trading decision.
+> A multi-agent financial research system that combines specialized AI analysts, structured debate, market-data tools, and risk review to produce an explainable trading decision.
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-1C3C3C)](https://www.langchain.com/langgraph)
@@ -8,15 +8,13 @@
 
 ## Project overview
 
-TradingAgents models the research workflow of an investment team as a stateful multi-agent system. Instead of asking one language model for a prediction, the application assigns focused responsibilities to analysts, bullish and bearish researchers, a trader, risk reviewers, and a portfolio manager.
+TradingAgents models the research workflow of an investment team as a stateful multi-agent system. Instead of relying on a single model response, it divides the analysis among specialized agents responsible for technical analysis, fundamentals, sentiment, news, investment research, trading strategy, and risk management.
 
-Each agent contributes a different perspective. Their reports and debates are carried through a LangGraph workflow, producing an explainable final recommendation rather than an isolated model response.
-
-This repository is the implementation I developed with guidance from my mentor. The README and presentation have been adapted to document the system as a portfolio project. The academic concept and original open-source foundation are credited in [Acknowledgments](#acknowledgments).
+The agents collect evidence through financial-data tools, challenge one another through structured debates, and pass their findings through a LangGraph state machine. The result is a traceable recommendation supported by analyst reports, competing research arguments, a trading plan, and a final portfolio-level risk assessment.
 
 > This project is for education and research only. It does not provide financial, investment, or trading advice. Outputs can be incomplete or incorrect and should not be used to make real financial decisions.
 
-## What the system demonstrates
+## Core capabilities
 
 - Multi-agent orchestration with conditional routes and shared state
 - Tool-using LLM agents grounded in market, fundamental, sentiment, and news data
@@ -199,9 +197,17 @@ TradingAgents/
 └── docker-compose.yml         # Containerized execution
 ```
 
-## Engineering lessons
+## Engineering highlights
 
-This project gave me practical experience with problems that appear in production AI systems: controlling multi-step workflows, grounding model output in tools, managing provider differences, preserving state across failures, separating model roles by cost and reasoning needs, and testing software whose external dependencies are not fully deterministic.
+The system addresses several challenges common to production AI applications:
+
+- **Workflow control:** conditional graph routes coordinate tool calls, agent handoffs, and bounded debate loops.
+- **Grounded analysis:** agents retrieve market and company data instead of relying only on model knowledge.
+- **Model specialization:** quick-thinking and deep-thinking models can be assigned to different responsibilities to balance latency, cost, and reasoning quality.
+- **Provider portability:** a shared client layer isolates the workflow from provider-specific APIs and model settings.
+- **Failure recovery:** SQLite-backed checkpoints allow interrupted analyses to resume from completed graph nodes.
+- **Long-term feedback:** the decision log records outcomes and makes previous reflections available to later analyses.
+- **Testability:** provider adapters, graph routing, state transitions, and utilities are separated into focused modules with automated tests.
 
 ## Roadmap
 
@@ -210,9 +216,9 @@ This project gave me practical experience with problems that appear in productio
 - Add portfolio-level analysis and position-sizing controls
 - Expand automated evaluations for factual grounding and decision consistency
 
-## Acknowledgments
+## Open-source foundation
 
-I built this project with guidance from my mentor using the open-source [TradingAgents](https://github.com/TauricResearch/TradingAgents) framework and its associated research as a foundation. Credit for the original architecture and paper belongs to Yijia Xiao, Edward Sun, Di Luo, Wei Wang, and the Tauric Research contributors.
+This project is based on the open-source [TradingAgents](https://github.com/TauricResearch/TradingAgents) framework and its associated research. Credit for the original architecture and paper belongs to Yijia Xiao, Edward Sun, Di Luo, Wei Wang, and the Tauric Research contributors.
 
 If you use the original research, cite:
 
